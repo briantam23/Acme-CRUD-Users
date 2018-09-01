@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 
 const userForm = (FormComponent) => {
     return class StatefulForm extends React.Component {
@@ -8,10 +8,24 @@ const userForm = (FormComponent) => {
                 name: '',
                 error: ''
             }
+            this.onCreate = this.onCreate.bind(this);
             this.handleChange = this.handleChange.bind(this);
             this.onUpdate = this.onUpdate.bind(this);
             this.fetchUser = this.fetchUser.bind(this);
-            this.fetchUser(this.props.id)
+            if(this.props.id) this.fetchUser(this.props.id);
+        }
+        onCreate (ev) {
+            ev.preventDefault();
+            const { users, createUser } = this.props
+    
+            for(let i=0; i < users.length; i++) {
+                if(users[i].name === this.state.name) {
+                    this.setState({ error: 'Error. User already in database.' })
+                    return;
+                }
+            }
+            createUser({ name: this.state.name })
+                .then(() => { this.props.history.push('/users') })
         }
         handleChange (ev) {
             this.setState({ name: ev.target.value })
@@ -39,9 +53,10 @@ const userForm = (FormComponent) => {
             }
         }
         render () {
-            return <FormComponent {...this.props} />
+            const { onCreate, handleChange, onUpdate } = this;
+            return <FormComponent {...this.props} {...this.state} onCreate={ onCreate } handleChange={ handleChange } onUpdate={ onUpdate } />
         }
     }
 }
 
-export default userForm */
+export default userForm

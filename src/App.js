@@ -57,8 +57,8 @@ class App extends Component {
                     <Route exact path='/' render={ () => <Home users={ users } /> } />
                     <Route path='/users' render={ () => <Users users={ users } destroyUser={ destroyUser } /> } />
                     <Switch>
-                        <Route path='/users/create' render={ ({ history }) => <UserCreate users={ users } history={ history } createUser={ createUser } /> } />
-                        <Route path='/users/:id' render={ ({ history, match }) => <UserUpdate users={ users } history={ history } id={ match.params.id } updateUser={ updateUser } fetchUser={ fetchUser } /> } />
+                        <Route path='/users/create' render={ ({ history, match }) => <UserCreate users={ users } history={ history } id={ match.params.id } updateUser={ updateUser } fetchUser={ fetchUser }  createUser={ createUser } /> } />
+                        <Route path='/users/:id' render={ ({ history, match }) => <UserUpdate users={ users } history={ history } id={ match.params.id } updateUser={ updateUser } fetchUser={ fetchUser } createUser={ createUser } /> } />
                     </Switch>
                 </div>                
             </Router>
