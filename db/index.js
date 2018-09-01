@@ -1,12 +1,5 @@
 const Sequelize = require('sequelize');
-/* const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/acme-crud-users', {
-    logging: false
-}); */
-
-const conn = new Sequelize({
-    connectionsString: process.env.DATABASE_URL,
-    ssl: true
-});
+const conn = new Sequelize(process.env.DATABASE_URL); //|| 'postgres://localhost/acme-crud-users', {logging: false }
 
 const User = conn.define('user', {
     name: {
