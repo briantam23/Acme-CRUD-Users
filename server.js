@@ -9,6 +9,8 @@ app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 
 app.use('/public', express.static(path.join(__dirname, 'dist')));
 
+app.use(require('body-parser').json())
+
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')))
 
 app.get('/api/users', (req, res, next) => {

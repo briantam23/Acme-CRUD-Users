@@ -1,4 +1,5 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class Users extends Component {
     constructor () {
@@ -10,18 +11,20 @@ class Users extends Component {
     render () {
         const { users, destroyUser } = this.props;
         return (
-            <Fragment>
+            <div>
+                <h2>Users</h2>
+                <hr />
                 <ul>
                     {
-                        users.map(user => <Fragment key={user.id}>
-                            <hr />
-                            <li>{ user.name }</li>
+                        users.map(user => <li key={ user.id }>
+                            <Link to={`/users/${user.id}`}>{ user.name }</Link>
                             <br />
                             <button onClick={ () => destroyUser(user) }>X</button>
-                        </Fragment>)
+                            </li>
+                        )
                     }
                 </ul>
-            </Fragment>
+            </div>
         )
     }
 }

@@ -11,7 +11,7 @@ const User = conn.define('user', {
 })
 
 const syncAndSeed = () => {
-    conn.sync({ force: true })
+    return conn.sync({ force: true })
         .then(() => {
             Promise.all([
                 User.create({ name: 'moe' }),
